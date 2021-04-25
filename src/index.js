@@ -1,14 +1,24 @@
-import { produce } from 'immer';
+import store from './store';
+import * as actions from './actionTypes';
 
-let book = { title: 'Harry Potter' };
+store.subscribe(() => {
+  console.log("Store changed!", store.getState());
+})
 
-function publish(book) {
-  return produce(book, draftBook => {
-    draftBook.isPublished = true;
-  });
-}
+store.dispatch({
+  type: actions.BUG_ADDED,
+  payload: {
+    description: "Bug1"
+  }
+})
 
-let updated = publish(book);
+// unsubscribe();
 
-console.log(book);
-console.log(updated);
+store.dispatch({
+  type: actions.BUG_REMOVED,
+  payload: {
+    id: 1
+  }
+})
+
+console.log(store.getState());
