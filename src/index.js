@@ -8,7 +8,6 @@ store.subscribe(() => {
   console.log("Store changed!");
 })
 
-
 store.dispatch(projectAdded({ project: "Project 1"}));
 store.dispatch(projectAdded({ project: "Project 2"}));
 store.dispatch(bugAdded({ description: "Bug 1"}));
